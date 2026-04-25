@@ -43,8 +43,8 @@ section {
 
 body {
   font-size: 10px;
-  font-family: var(--font-cooper);
-  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
   background-color: #08090a;
   color: white;
   height: 100vh;
@@ -78,6 +78,7 @@ body {
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
   transition: transform 0.5s ease;
+  font-family: var(--font-cooper);
 }
 
 .hide-UI #navbar {
