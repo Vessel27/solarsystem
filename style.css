@@ -1,4 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
+/* Cooper Black font via @font-face fallback chain */
+@font-face {
+  font-family: 'Cooper';
+  src: local('Cooper Black'), local('CooperBlack'), local('Cooper-Black');
+  font-weight: bold;
+}
+
+:root {
+  --font-cooper: 'Cooper Black', 'Cooper', 'Cooper Hewitt', 'Abril Fatface', 'Rockwell Extra Bold', serif;
+}
 
 /* Reset and Base Styles */
 html,
@@ -32,8 +43,8 @@ section {
 
 body {
   font-size: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-family: var(--font-cooper);
+  font-weight: 400;
   background-color: #08090a;
   color: white;
   height: 100vh;
