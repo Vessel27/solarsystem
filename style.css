@@ -1,15 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
-
-/* Cooper Black font via @font-face fallback chain */
-@font-face {
-  font-family: 'Cooper';
-  src: local('Cooper Black'), local('CooperBlack'), local('Cooper-Black');
-  font-weight: bold;
-}
-
-:root {
-  --font-cooper: 'Cooper Black', 'Cooper', 'Cooper Hewitt', 'Abril Fatface', 'Rockwell Extra Bold', serif;
-}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
 /* Reset and Base Styles */
 html,
@@ -78,7 +67,6 @@ body {
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
   transition: transform 0.5s ease;
-  font-family: var(--font-cooper);
 }
 
 .hide-UI #navbar {
@@ -86,18 +74,29 @@ body {
 }
 
 #navbar h1 {
-  font-size: clamp(20px, 2.5vw, 2.4em);
+  font-size: clamp(14px, 2.5vw, 2.4em);
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
+#navbar h1 span {
+  font-size: 0.5em;
+  display: block;
+  opacity: 0.7;
+}
+
 #navbar a {
   color: #40bad5;
   text-decoration: none;
-  font-size: clamp(10px, 1.5vw, 1.2em);
+  font-size: clamp(12px, 1.5vw, 1.2em);
   cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 8px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 /* Data Panel */
@@ -109,25 +108,6 @@ body {
   transition: transform 0.5s ease;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-}
-
-@media (max-width: 480px) {
-  #data {
-    top: 60px;
-    left: 8px;
-  }
-  #data a {
-    padding: 6px 10px;
-    font-size: 11px;
-  }
-  #controls {
-    top: 60px;
-    right: 8px;
-    padding: 10px;
-  }
-  #navbar {
-    padding: 10px;
-  }
 }
 
 .data-close #data {
@@ -144,6 +124,10 @@ body {
   border-radius: 4px;
   transition: background 0.3s;
   cursor: pointer;
+  font-size: clamp(12px, 2vw, 14px);
+  min-height: 36px;
+  display: flex;
+  align-items: center;
 }
 
 #data a:hover,
@@ -151,62 +135,178 @@ body {
   background: #40bad5;
 }
 
-/* Controls Panel */
+/* ======================================
+   CONTROLS PANEL — fully responsive
+   ====================================== */
 #controls {
   position: absolute;
-  top: 80px;
-  right: 20px;
+  top: 70px;
+  right: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 8px;
+  background: rgba(8, 12, 20, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(64, 186, 213, 0.25);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 16px;
   transition: transform 0.5s ease;
+  width: clamp(180px, 28vw, 240px);
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
 }
 
 .controls-close #controls {
-  transform: translateX(150%);
+  transform: translateX(110%);
 }
 
 #controls label {
-  display: block;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
   cursor: pointer;
+  font-size: clamp(12px, 1.8vw, 14px);
+  line-height: 1.4;
+  min-height: 36px;
+  color: rgba(255, 255, 255, 0.9);
+  gap: 8px;
 }
 
-#controls input[type="radio"],
-#controls input[type="checkbox"] {
-  margin-right: 10px;
+#controls input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: #40bad5;
+  cursor: pointer;
+  margin: 0;
 }
 
 .control-group {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .control-group label {
-  margin-bottom: 6px;
-  font-size: 1.2em;
+  margin-bottom: 8px;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: rgba(255, 255, 255, 0.85);
+  min-height: unset;
+  display: block;
 }
 
 #speed-slider {
   width: 100%;
   accent-color: #40bad5;
   cursor: pointer;
+  height: 6px;
+  border-radius: 3px;
+  /* bigger touch target on mobile */
+  padding: 8px 0;
+  box-sizing: content-box;
 }
 
 #toggle-pause {
   width: 100%;
-  padding: 8px;
+  padding: 10px 8px;
   background: #40bad5;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: clamp(13px, 1.8vw, 15px);
   transition: background 0.3s;
+  min-height: 44px;
+  letter-spacing: 0.5px;
 }
 
 #toggle-pause:hover {
   background: #35a0b8;
+}
+
+/* Mobile — controls become a bottom sheet-style strip */
+@media (max-width: 600px) {
+  #controls {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 50vh;
+    border-radius: 14px 14px 0 0;
+    border: 1px solid rgba(64, 186, 213, 0.3);
+    border-bottom: none;
+    padding: 14px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Horizontal row for radio buttons */
+  .radio-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  #controls label {
+    font-size: 14px;
+    margin-bottom: 0;
+    flex: 1;
+    min-height: 40px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 6px 10px;
+    justify-content: center;
+  }
+
+  #controls label:has(input:checked) {
+    background: rgba(64, 186, 213, 0.25);
+    color: #40bad5;
+  }
+
+  .control-group {
+    margin-bottom: 6px;
+  }
+
+  .control-group label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 4px;
+  }
+
+  #speed-slider {
+    height: 8px;
+  }
+
+  #toggle-pause {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .controls-close #controls {
+    transform: translateY(110%);
+  }
+
+  #data {
+    top: 60px;
+    left: 8px;
+  }
+
+  #data a {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-height: 40px;
+  }
+
+  #navbar {
+    padding: 10px 14px;
+  }
+
+  #navbar h1 {
+    font-size: 14px;
+  }
+
+  #navbar a {
+    font-size: 13px;
+  }
 }
 
 /* Universe and Galaxy */
@@ -289,7 +389,6 @@ body {
   background-color: #202020;
   background-size: cover;
   transition: transform 0.2s;
-  /* Create 3D sphere look with radial gradient */
   box-shadow:
     inset -4px -4px 10px rgba(0, 0, 0, 0.5),
     inset 4px 4px 10px rgba(255, 255, 255, 0.2);
@@ -365,13 +464,11 @@ body {
 .asteroid {
   position: absolute;
   border-radius: 50%;
-  /* Enhanced 3D sphere effect using multiple shadows */
   box-shadow:
     inset -2px -2px 4px rgba(0, 0, 0, 0.8),
     inset 1px 1px 2px rgba(255, 255, 255, 0.3),
     0 0 4px rgba(0, 0, 0, 0.5);
   transform-style: preserve-3d;
-  /* Counter-rotate to face camera and maintain 3D appearance */
   animation: invert-asteroid linear infinite;
   animation-duration: inherit;
 }
@@ -421,7 +518,7 @@ body {
 }
 
 #planet-modal h2 {
-  font-size: 2.4em;
+  font-size: clamp(18px, 4vw, 2.4em);
   margin-bottom: 15px;
   color: #40bad5;
   text-transform: uppercase;
@@ -431,7 +528,7 @@ body {
 }
 
 #planet-modal p {
-  font-size: 1.4em;
+  font-size: clamp(13px, 2vw, 1.4em);
   line-height: 1.6;
   margin-bottom: 15px;
   opacity: 0.9;
@@ -448,7 +545,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 1.2em;
+  font-size: clamp(12px, 1.8vw, 1.2em);
 }
 
 #planet-modal .stats span:first-child {
@@ -463,9 +560,10 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: clamp(13px, 2vw, 1.2em);
   width: 100%;
   transition: background 0.3s;
+  min-height: 44px;
 }
 
 #close-modal:hover {
@@ -491,7 +589,6 @@ body {
   }
 }
 
-/* Specific inversion for asteroids to handle their rotation and tilt */
 @keyframes invert-asteroid {
   0% {
     transform: translateZ(var(--z-offset)) rotateX(-75deg) rotateY(360deg);

@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System Simulation - Realistic Spheres</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=cooper-hewitt:400,700|abril-fatface:400" rel="stylesheet">
+    <title>3D Solar System Simulation - Realistic Spheres</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="view-3D data-open controls-open">
 
     <div id="navbar">
         <a id="toggle-data">Data</a>
-        <h1>SOLAR SYSTEM</h1>
+        <h1>3D Solar System<span>Realistic 3D Spheres</span></h1>
         <a id="toggle-controls">Controls</a>
     </div>
 
@@ -29,8 +27,10 @@
     </div>
 
     <div id="controls">
-        <label><input type="radio" name="scale" value="stretched" checked> Stretched Scale</label>
-        <label><input type="radio" name="scale" value="size"> Realistic Size</label>
+        <div class="radio-row">
+            <label><input type="radio" name="scale" value="stretched" checked> Stretched</label>
+            <label><input type="radio" name="scale" value="size"> Realistic</label>
+        </div>
         <div class="control-group">
             <label for="speed-slider">Speed: <span id="speed-label">1x</span></label>
             <input type="range" id="speed-slider" min="0.1" max="3" step="0.1" value="1">
